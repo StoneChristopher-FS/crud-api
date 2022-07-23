@@ -1,0 +1,35 @@
+GET http://localhost:8000/inventory
+
+###
+
+GET http://localhost:8000/inventory/1GT12ZC87BF8NR4RT
+
+###
+
+POST http://localhost:8000/inventory
+Content-Type: application/json
+
+{
+    "year": 2012,
+    "make": "Chevrolet",
+    "model": "Camaro",
+    "color": "Red",
+    "price": 25000
+}
+
+###
+
+DELETE http://localhost:8000/inventory/62db98dbd5947287c3bf3196
+
+###
+
+PATCH http://localhost:8000/inventory/62db98dbd5947287c3bf3196
+Content-Type: application/json
+
+{
+    "year": 2020,
+    "make": "Dodge",
+    "model": "Charger",
+    "color": "Green",
+    "price": 15000
+}
