@@ -23,6 +23,11 @@ const vehicleSchema = new mongoose.Schema({
     price: {
         type: Number,
         required: true
+    },
+    createdAt: {
+        type: String,
+        required: true,
+        default: Date.now
     }
 });
 
