@@ -110,17 +110,9 @@ function Vehicle() {
         <div className='App'>
             <header className='App-header'>
                 <h1>Vehicle Info</h1>
-                <h5>{info.vin}</h5>
-                <p>{info.year}</p>
-                <p>{info.make}</p>
-                <p>{info.model}</p>
-                <p>{info.color}</p>
-                <p>{info.price}</p>
-                <button onClick={() => deleteVehicle()}>Remove from Inventory</button>
                 <Link to='/'>Home</Link>
                 <Link to='/inventory'>Inventory</Link>
-
-                <form onSubmit={(event) => handleSubmit(event)}>
+                <form onSubmit={(event) => handleSubmit(event)} className="form">
                     <label>
                         Year:
                         <input type='number' name='year' value={info.year} onChange={handInputChanges} />
@@ -145,8 +137,29 @@ function Vehicle() {
                         Price:
                         <input type='number' name='price' value={info.price} onChange={handInputChanges} />
                     </label>
-                    <input type='submit' value='Submit' />
+                    <button type='submit' className='submit'>Confirm Edit</button>
                 </form>
+
+                <div className='card'>
+                    <ul>
+                        <li>
+                            VIN: {info.vin}
+                        </li>
+                        <li>
+                            {info.year}
+                        </li>
+                        <li>
+                            {info.make} {info.model}
+                        </li>
+                        <li>
+                            {info.color}
+                        </li>
+                        <li>
+                            ${info.price}
+                        </li>
+                    </ul>
+                </div>
+                <button onClick={() => deleteVehicle()} className="remove">Remove from Inventory</button>
             </header>
         </div>
     )

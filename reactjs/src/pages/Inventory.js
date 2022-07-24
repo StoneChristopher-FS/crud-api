@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
+import '../Custom.css';
 
 function Inventory() {
     const [vehicles, setVehicles] = useState(null);
@@ -80,16 +81,7 @@ function Inventory() {
             <header className='App-header'>
                 <h1>Inventory:</h1>
                 <Link to='/'>Home</Link>
-                <ul>
-                    {
-                        vehicles && vehicles.map(car => (
-                            <li key={car.vin}>
-                                <Link to={`/inventory/${car.vin}`}>{car.vin}</Link>
-                            </li>
-                        ))
-                    }
-                </ul>
-                <form onSubmit={(event) => handleSubmit(event)}>
+                <form onSubmit={(event) => handleSubmit(event)} className="form">
                     <label>
                         Year:
                         <input type='number' name='year' value={info.year} onChange={handInputChanges} />
@@ -114,8 +106,35 @@ function Inventory() {
                         Price:
                         <input type='number' name='price' value={info.price} onChange={handInputChanges} />
                     </label>
-                    <input type='submit' value='Submit' />
+                    <button type='submit' className='submit'>Add to Inventory</button>
                 </form>
+                <div className='inventory'>
+                    {
+                        vehicles && vehicles.map(car => (
+                            <Link to={`/inventory/${car.vin}`} key={car.vin} className="card">
+                                <div>
+                                    <ul>
+                                        <li>
+                                            VIN: {car.vin}
+                                        </li>
+                                        <li>
+                                            {car.year}
+                                        </li>
+                                        <li>
+                                            {car.make} {car.model}
+                                        </li>
+                                        <li>
+                                            {car.color}
+                                        </li>
+                                        <li>
+                                            ${car.price}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </Link>
+                        ))
+                    }
+                </div>
             </header>
         </div>
     )
