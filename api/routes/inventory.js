@@ -2,7 +2,6 @@ const express = require('express');
 const { update } = require('../models/vehicle');
 const router = express.Router();
 const Vehicle = require('../models/vehicle');
-
 const vinGenerator = require('vin-generator');
 
 const getVehicle = async (req, res, next) => {
