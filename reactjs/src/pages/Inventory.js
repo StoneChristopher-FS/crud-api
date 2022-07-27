@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+import AuthService from '../services/auth.service';
+import InventoryService from '../services/inventory.service';
+
 import '../App.css';
 import '../Custom.css';
 
@@ -16,19 +20,35 @@ function Inventory() {
         price: ''
     });
 
+    const navigate = useNavigate();
+
     const API_BASE = process.env.NODE_ENV === 'development'
         ? `http://localhost:8000/api/v1`
         : process.env.REACT_APP_BASE_URL;
 
     let ignore = false;
     useEffect(() => {
-        if(!ignore) {
-            getInventory();
-        }
 
-        return () => {
-            ignore = true;
-        }
+        InventoryService.getAllPrivateInventory().then(
+            res => {
+                setVehicles(res.data)
+            },
+            (err) => {
+                console.log('Secured Page Error: ', error.response)
+                if(err.res && err.res.status == 403) {
+                    AuthService.logout()
+                    navigate('/login')
+                }
+            }
+        )
+
+        // if(!ignore) {
+        //     getInventory();
+        // }
+
+        // return () => {
+        //     ignore = true;
+        // }
     }, []);
 
     const getInventory = async () => {

@@ -1,6 +1,9 @@
 const express = require('express');
-const { update } = require('../models/vehicle');
 const router = express.Router();
+const passport = require('passport');
+const passportService = require('../services/passport');
+
+const protectedRoute = passport.authenticate('jwt', {session: false});
 const Vehicle = require('../models/vehicle');
 const vinGenerator = require('vin-generator');
 
@@ -22,7 +25,7 @@ const getVehicle = async (req, res, next) => {
     next();
 }
 
-router.get('/', async (req, res) => {
+router.get('/', protectedRoute, async (req, res) => {
     try {
         const inventory = await Vehicle.find()
         res.json(inventory)
