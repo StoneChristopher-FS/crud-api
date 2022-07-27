@@ -25,14 +25,6 @@ function App() {
 
 	return (
 		<div>
-			<h1>Demo logging in</h1>
-			<div>
-				{
-					currentUser === false
-					? <h2>Logged In</h2>
-					: <h2>Logged Out</h2>
-				}
-			</div>
 			<section>
 				<Routes>
 					<Route path='/login' exact element={<Login />} />

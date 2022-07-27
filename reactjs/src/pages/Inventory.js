@@ -41,14 +41,6 @@ function Inventory() {
                 }
             }
         )
-
-        // if(!ignore) {
-        //     getInventory();
-        // }
-
-        // return () => {
-        //     ignore = true;
-        // }
     }, []);
 
     const getInventory = async () => {
